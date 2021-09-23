@@ -1,0 +1,60 @@
+  {% load static %}
+
+  {% block title %}
+  Student Course
+  {% endblock %}
+
+  {% for subject in subjects %}
+  <div class="col-lg-3">
+    <div class="card text-center">
+      <a href="{% url 'student_home' %}" style="text-decoration: none">
+        <a href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+          <div style="background: yellowgreen;">
+            <div class="card-header text-white">
+              <div class="row align-items-center">
+                <div class="col">
+                </div>
+                <div class="col">
+                  <img src="{{ subject.user.userprofile.image.url }}" class="me-3 rounded-circle" style="width: 50px; height: 50px">
+                  <h5>{{subject.subject_name}}</h5>
+                  <p>{{subject.cp_id}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid" style="margin-bottom: 10px; align-items: left; justify-content: center; display: flex">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Join Course
+              </button>
+              <br>
+            </div>
+          </div>
+        </a>
+    </div>
+  </div>
+  {% endfor %}
+  jkbhjj
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Join Course</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Course Passcode</label>
+              <input type="text" class="form-control" name="subject" placeholder="Enter Code">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Join</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

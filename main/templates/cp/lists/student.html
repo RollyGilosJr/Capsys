@@ -1,0 +1,50 @@
+{% extends 'cp/main/base.html' %}
+{% load static %}
+
+{% block title %}
+    Student
+{% endblock %}
+
+
+
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+        <div class="container-fluid">
+            {% block name %}<h1>Student list</h1> {% endblock %}
+            <hr>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% block list %}
+                        {% for stud in student %}
+                            <tr>
+                                <td>{{ stud.id }}</td>
+                                <td>{{ stud.first_name }}</td>
+                                <td>{{ stud.last_name }}</td>
+                                <td>{{ stud.email }}</td>
+                                <td>{{ stud.id }}</td>
+
+                            </tr>
+                        {% endfor %}
+                    {% endblock %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </main>
+
+
+{% endblock %}

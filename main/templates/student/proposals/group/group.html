@@ -1,0 +1,146 @@
+{% extends 'cp/main/base.html' %}
+
+{% block title %}
+    Group Proposal
+{% endblock %}
+
+{% block style %}
+    <style>
+
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+        <div class="container">
+            <nav class="navbar navbar-expand-lg  bg-light">
+                <div class="container-fluid justify-content-center">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <h3><a class="nav-link " href="{% url 'Title' %}" style="color: black">Title</a></h3>
+                        </li>
+                        <li class="nav-item">
+                            <h3><a class="nav-link active" href="{% url 'Group' %}" style="color: black">Group</a></h3>
+                        </li>
+                        <li class="nav-item">
+                            <h3><a class="nav-link" href="{% url 'Adviser' %}" style="color: black">Adviser</a></h3>
+                        </li>
+                        <li class="nav-item">
+                            <h3><a class="nav-link" href="{% url 'Panelist' %}" style="color: black">Panelists</a></h3>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2 class="h2">
+                Group
+            </h2
+            >
+        </div>
+
+
+        <div class="container-fluid">
+            <h4>
+                Input the name of your group members
+            </h4>
+
+
+            <form method="post">
+                {% csrf_token %}
+
+
+                <label for="member1">Member #1</label>
+                <input class="form-control" list="member1list" name="name1" id="name1">
+                <datalist id="member1list">
+                    <option selected value="{{ name.get_username |title }}">{{ name.get_full_name |title }}
+
+                </datalist>
+                <br>
+
+
+                <label for="member2">Member #2</label>
+                <input class="form-control" list="member2list" name="name2" id="name2">
+                <datalist id="member2list">
+                    {% for user in users %}
+                        <option selected
+                                value="{{ user.get_username | title }}">{{ user.get_full_name | title }}</option>
+                    {% endfor %}
+
+                </datalist>
+                <br>
+
+                <label for="member3">Member #3</label>
+                <input class="form-control" list="member3list" name="name3" id="name3">
+                <datalist id="member3list">
+                    {% for user in users %}
+                        <option selected
+                                value="{{ user.get_username | title }}">{{ user.get_full_name | title }}</option>
+                    {% endfor %}
+
+                </datalist>
+                <br>
+
+                <label for="member4">Member #4 </label>
+                <input class="form-control" list="member4list" name="name4" id="name4">
+                <datalist id="member4list">
+                    {% for user in users %}
+                        <option selected
+                                value="{{ user.get_username | title }}">{{ user.get_full_name | title }}</option>
+                    {% endfor %}
+
+                </datalist>
+                <br>
+
+                <div class="container" style="display: flex; justify-content: center ">
+                    <button type="submit" class="btn btn-primary" name="button">Submit</button>
+                </div>
+
+            </form>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-primary" role="alert"
+                         style="display: flex; justify-content: center; text-align: center">
+                        <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+            {{ test }}
+            <hr>
+
+
+
+        </div>
+    </main>
+
+
+
+
+
+
+{% endblock %}
+
+{% block js %}
+    {% for member in group %}
+        <script>
+
+            var demoInput1 = document.getElementById('name1'); // give an id to your input and set it as variable
+            demoInput1.value = "{{member.name1}}"; // set default value instead of html attribute
+            var demoInput2 = document.getElementById('name2'); // give an id to your input and set it as variable
+            demoInput2.value = "{{member.name2}}"; // set default value instead of html attribute
+            var demoInput3 = document.getElementById('name3'); // give an id to your input and set it as variable
+            demoInput3.value = "{{member.name3}}"; // set default value instead of html attribute
+            var demoInput4 = document.getElementById('name4'); // give an id to your input and set it as variable
+            demoInput4.value = "{{member.name4}}"; // set default value instead of html attribute
+
+        </script>
+
+        </script>
+    {% endfor %}
+{% endblock %}

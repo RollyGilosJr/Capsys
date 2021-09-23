@@ -1,0 +1,132 @@
+{% extends 'dean/main/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Students
+{% endblock %}
+
+
+{% block content %}
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">
+                Students
+            </h1>
+            {#CONTENT BLOCK#}
+        </div>
+
+
+        {% comment %} Display Messages {% endcomment %}
+        {% if messages %}
+            <div class="form-group">
+                <div class="col-12">
+                    {% for message in messages %}
+                        {% if message.tags == "error" %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                 style="margin-top: 10px;">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% elif message.tags == "success" %}
+                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                 style="margin-top: 10px;">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+
+
+        <!-- Button trigger modal -->
+        <div class="container">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add Students
+            </button>
+        </div>
+
+
+        <div class="container-fluid">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Last Name</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Group Name</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for Student in student %}
+                    <tr>
+                        <th scope="row">{{ Student.id }}</th>
+                        <td>{{ Student.first_name | title }}</td>
+                        <td>{{ Student.last_name | title }}</td>
+                        <td>{{ Student.username }}</td>
+                        <td>{{ Student.email }}</td>
+                        <td>{{ Student.userprofile.group_name }}</td>
+
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Student</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <label for="first_name">First Name</label>
+                            <input type="text" class="form-control" name="first_name">
+
+                            <label for="last_name">Last Name</label>
+                            <input type="text" class="form-control" name="last_name">
+
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" name="username">
+
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="email">
+
+                            <label for="password">Password</label>
+                            <input type="text" disabled placeholder="!@#Default" class="form-control" name="password">
+
+                            <label for="role">Role</label>
+                            <input type="text" disabled placeholder="Capstone Professor" class="form-control"
+                                   name="role">
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+{% endblock %}

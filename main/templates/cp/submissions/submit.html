@@ -1,0 +1,71 @@
+
+{% extends 'cp/main/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}
+    Submit
+{% endblock %}
+
+{% block content %}
+
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">
+                Submit
+            </h1>
+        </div>
+
+
+
+        <br>
+        <div class="container-fluid">
+        <div class="card">
+          <div class="card-header">
+            <div class="col">
+                        <h5 class="card-header">Title</h5>
+                        </div>
+                    <div class="col">
+                        <h5 class="card-header">Duedate</h5>
+                        <div>{{postsub.duedate}}</div>
+                    </div>
+            </div>
+            <div class="d-flex">
+              <img src="{{ postsub.user.userprofile.image.url }}" class="me-3 rounded-circle"
+                   style="width: 50px; height: 50px">
+                <div class="card-body">
+                    <h5 class="card-title">{{postsub.title}}</h5>
+                    <small class="text-muted">Posted by {{ postsub.user }} on {{ postsub.timestamp }}</small>
+                    <p class="card-text">{{postsub.sub_details}}</p>
+                    <p>File Type: {{postsub.filetype}}</p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+        {% for sub in submits %}
+        <div class="container-fluid">
+              <div class="card">
+                  <div class="row">
+                      <div class="col">
+                        <img src="{{ sub.user.userprofile.image.url }}" class="me-3 rounded-circle"
+                             style="width: 50px; height: 50px">
+                             <div>
+                                 <h6 class="fw-bold">{{ sub.user }}</h6>
+                                 <small class="text-muted">Posted on {{ sub.timestamp }}</small>
+                             </div>
+                      </div>
+
+                  </div>
+
+                  <div class="card-body">
+                      <h5 class="card-title">{{sub.sub_content}}</h5>
+                  </div>
+              </div>
+            {% endfor %}
+          </div>
+    </main>
+
+
+{% endblock %}

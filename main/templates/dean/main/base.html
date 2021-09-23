@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    {#TITLE BLOCK#}
+    <title>
+        {% block title %}
+            Capstone Project System
+        {% endblock %}
+    </title>
+    {#END TITLE BLOCK#}
+
+    {#BASE CSS#}
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
+    <link href="{% static 'main/css/dashboard.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg"
+          href="{% static 'main/image/Revised-SSU-Logo-8-x-8-as-of-04-30-2021-1300size.png' %}"/>
+
+    {#END BASE CSS#}
+
+    {#CUSTOM STYLES BLOCK#}
+    {% block style %}
+
+    {% endblock %}
+    {#END CUSTOM STYLE#}
+</head>
+<body>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{% url 'home' %}">CaPSys</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+
+    <div class="dropdown">
+
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+           data-bs-toggle="dropdown" aria-expanded="false">
+            Hi! {{ request.user.username }}
+        </a>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Sign out</a></li>
+        </ul>
+    </div>
+</header>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">
+                            <span data-feather="home"></span>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'guide' %}">
+                            <span data-feather="file"></span>
+                            Lessons
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Group' %}">
+                            <span data-feather="shopping-cart"></span>
+                            Proposals
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'submissions' %}">
+                            <span data-feather="users"></span>
+                            Submissions
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'forum' %}">
+                            <span data-feather="bar-chart-2"></span>
+                            Forum
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Add_Course' %}">
+                            <span data-feather="layers"></span>
+                            Program management
+                        </a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Add_Subject' %}">
+                                <span data-feather="layers"></span>
+                                Course Management
+                            </a>
+                        </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="layers"></span>
+                            Evaluations
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="layers"></span>
+                            Plagiarism Checker
+                        </a>
+                    </li>
+
+                </ul>
+
+
+            </div>
+        </nav>
+    </div>
+</div>
+
+
+
+{% block content %}
+
+{% endblock %}
+{#END CONTENT BLOCK#}
+
+
+{#BASE SCRIPT SRC#}
+<script src="{% static 'main/js/feather.min.js' %}
+    <script src=" {% static 'main/js/Chart.min.js' %}></script>
+<script src="{% static 'main/js/dashboard.js' %}"></script>
+<script src="{% static 'main/js/bootstrap.bundle.min.js' %}"></script>
+
+{#END BASE SCRIPT #}
+
+
+{#CUSTOM JS BLOCK#}
+{% block js %}
+{% endblock %}
+{#END CUSTOME JS BLOCK #}
+
+</main>
+</body>
+</html>

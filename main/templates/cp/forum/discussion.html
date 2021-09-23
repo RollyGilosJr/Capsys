@@ -1,0 +1,114 @@
+{% extends 'cp/main/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Discussions
+{% endblock %}
+
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <br>
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex">
+                        <img src="{{ post.user.userprofile.image.url }}" class="me-3 rounded-circle"
+                             style="width: 50px; height: 50px">
+                        <div>
+                            <h5 class="fw-bold">{{ post.title }}
+                            </h5>
+                            <small class="text-muted">Posted by {{ post.user.get_full_name | title }}
+                                on {{ post.timestamp }}</small>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ post.post_content }}</p>
+                </div>
+
+
+
+            </div>
+        </div>
+        <br>
+
+
+        <div class="container-fluid"
+             style="margin-bottom: 10px; align-items: center; justify-content: center; display: flex">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    style="padding: 10px; width: 50%">
+                Reply
+            </button>
+            <br>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Reply</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="POST" action="/discussion/{{ post.id }}/">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            {{ form.comment_content | as_crispy_field }}
+
+
+                            {{ form.image   | as_crispy_field }}
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        {% for comment in comments %}
+            <br>
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex">
+                            <img src="{{ comment.user.userprofile.image.url }}" class="me-3 rounded-circle"
+                                 style="width: 50px; height: 50px">
+                            <div>
+                                <h6 class="fw-bold">{{ comment.user.get_full_name | title }}
+                                </h6>
+                                <small class="text-muted">Posted on {{ comment.timestamp }}</small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ comment.comment_content }}</p>
+                    </div>
+                    {% if comment.user == user %}
+                    <div class="card-footer">
+                        <a href="{% url 'update_reply' comment.id %}">edit</a>
+                    </div>
+                {% endif %}
+
+                </div>
+            </div>
+        {% endfor %}
+
+
+    </main>
+{% endblock %}

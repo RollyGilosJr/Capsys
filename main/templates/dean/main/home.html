@@ -1,0 +1,137 @@
+{% extends 'dean/main/base.html' %}
+{% load static %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block style %}
+    <style>
+        img {
+            width: 75%;
+            margin-top: 75px;
+            margin-left: 75px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">
+                Dashboard
+            </h1>
+
+            <h2>Welcome {{ name | title }}</h2>
+            {#CONTENT BLOCK#}
+        </div>
+        <div class="container mt-5">
+            <div class="row" style="margin-left: 0px;">
+                <div class="col-lg-3">
+                    <div class="card text-center">
+                        <a href="{% url 'add_cp' %}" style="text-decoration: none">
+
+                            <div style="background: rgb(73, 185, 185);">
+                                <div class="card-header text-white">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <i class="fas fa-user-friends"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="display-3">{{ cpnum }}</h3>
+                                            <h6>Capstone Professor</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p style="margin: 0;padding: 0;">View/Add Capstone Professors </p>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card text-center">
+                        <a href="{% url 'add_faculty' %}" style="text-decoration: none">
+
+                            <div style="background: yellowgreen;">
+                                <div class="card-header text-white">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="display-3">{{ instructornum }}</h3>
+                                            <h6>Faculty Members</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p style="margin: 0;padding: 0;">View/Add Faculty Members </p>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card text-center">
+                        <a href="{% url 'add_student' %}" style="text-decoration: none">
+
+                            <div style="background: goldenrod;">
+                                <div class="card-header text-white">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="display-3">{{ studentnum }}</h3>
+                                            <h6>Students</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p style="margin: 0;padding: 0;">View/Add Students </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="card text-center">
+                        <a href="{% url 'add_group' %}" style="text-decoration: none">
+
+                            <div style="background: yellowgreen;">
+                                <div class="card-header text-white">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="display-3">{{ groupnum }}</h3>
+                                            <h6>Groups</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p style="margin: 0;padding: 0;">View/Add Groups </p>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid">
+            <h1>Announcements</h1>
+            <hr>
+        </div>
+
+        <div class="container-fluid">
+            <h1>Recent Activities</h1>
+            <hr>
+
+
+        </div>
+
+    </main>
+
+
+{% endblock %}
+
+

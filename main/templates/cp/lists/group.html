@@ -1,0 +1,40 @@
+{% extends 'cp/main/base.html' %}
+{% load static %}
+
+{% block title %}
+    Student
+{% endblock %}
+
+
+
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+        <div class="container-fluid">
+            <h1>Group List</h1>
+            <hr>
+
+            {% for grp in group %}
+        <div class="container-fluid">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    <h5>{{ grp.groupname }}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ grp.name1 }}</li>
+                    <li class="list-group-item">{{ grp.name2}}</li>
+                    <li class="list-group-item">{{ grp.name3}}</li>
+                    <li class="list-group-item">{{ grp.name4}}</li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+        </div>
+
+
+    </main>
+
+
+{% endblock %}
+
+

@@ -1,0 +1,82 @@
+{% extends 'cp/main/base.html' %}
+{% load static %}
+{% block title %}
+Add Subject
+{% endblock %}
+
+{% block content %}
+
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">
+      Subject Management
+    </h1>
+  </div>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg  bg-light">
+      <div class="container-fluid justify-content-center">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <h3><a class="nav-link " href="{% url 'Add_Subject' %}" style="color: black">Add subject</a></h3>
+          </li>
+          <li class="nav-item">
+            <h3><a class="nav-link active" href="{% url 'Manage_Subject' %}" style="color: black">Manage subject</a></h3>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <form action="{% url 'Add_Subject'%}" method="POST">
+    {% csrf_token %}
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-header">
+          <div class="form-group">
+            <label>Course Name </label>
+            <input type="text" class="form-control" name="subject" placeholder="Enter Course">
+          </div>
+          <div class="form-group">
+            <label>Instructor Name</label>
+            <select class="form-select" name="cps" aria-label="Default select example">
+              {% for cp in CPs %}
+              <option value="{{cp.id}}" selected>{{cp}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Course Passcode </label>
+            <input type="text" class="form-control" name="code" placeholder="Enter Passcode">
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Add Subject</button>
+          </div>
+        </div>
+      </div>
+  </form>
+  <br>
+  {% for subject in subjects%}
+  <a href="{% url 'Manage_Subject' %}" style="text-decoration: none; color: #3b3b3b">
+    <div class="container-fluid-hover text-nowrap ">
+      <div class="card">
+        <div class="card-header">
+          <div class="d-flex">
+            <div>
+              <small class="text-muted">Course Name</small>
+              <h5 class="fw-bold">{{ subject.subject_name }}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>Instructor:<b> {{ subject.cp_id}} </b></p>
+          <p>Passcode:<b> {{ subject.code}} </b></p>
+        </div>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+  <br>
+</main>
+
+{% endblock %}

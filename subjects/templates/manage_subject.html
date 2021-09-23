@@ -1,0 +1,72 @@
+{% extends 'cp/main/base.html' %}
+{% load static %}
+{% block title %}
+Manage Subject
+{% endblock %}
+
+{% block content %}
+
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">
+      Subject Management
+    </h1>
+  </div>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg  bg-light">
+      <div class="container-fluid justify-content-center">
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <h3><a class="nav-link " href="{% url 'Add_Subject' %}" style="color: black">Add subject</a></h3>
+          </li>
+          <li class="nav-item">
+            <h3><a class="nav-link active" href="{% url 'Manage_Subject' %}" style="color: black">Manage subject</a></h3>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <!-- general form elements -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Subject Details</h3>
+          <div class="card-body table-responsive p-0">
+            <table class="table table-hover text-nowrap">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Course Name</th>
+                  <th>Instructor</th>
+                  <th>Course Passcode</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for subject in subjects %}
+                <tr>
+                  <td>{{ subject.id }}</td>
+                  <td>{{ subject.subject_name }}</td>
+                  <td>{{ subject.cp_id }}</td>
+                  <td>{{ subject.code }}</td>
+                  <td>
+                    <a href="#" class="btn btn-success">Edit</a>
+                    <a href="{% url 'Delete_Subject' subject.id %}" class="btn btn-danger">Delete</a>
+                  </td>
+                </tr>
+                {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+</main>
+
+{% endblock %}

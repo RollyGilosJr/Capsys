@@ -1,0 +1,48 @@
+{% extends 'cp/main/base.html' %}
+{% load static %}
+
+{% block title %}
+    Title
+{% endblock %}
+{% block style %}
+    <style>
+        img {
+            border-radius: 0%;
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">
+                {{ guideposts.title }}
+            </h1>
+
+
+        </div>
+        <div class="card">
+            <div class="card-body">
+                {{ guideposts.content }}
+            </div>
+            {% if guideposts.image %}
+
+                <img src="{{ guideposts.image.url }}" alt="sdas">
+
+
+            {% endif %}
+        {% if guideposts.pdf %}
+            <br></br>
+            <a href="{{ guideposts.pdf.url }}" class="btn btn-primary">Download PDF</a>
+        {% endif %}
+
+        </div>
+
+
+    </main>
+
+
+{% endblock %}
+
+

@@ -1,0 +1,74 @@
+{% extends 'cp/main/base.html' %}
+
+{% block title %}
+    Group Proposal
+{% endblock %}
+
+{% block style %}
+    <style>
+
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+        <div class="container">
+            <nav class="navbar navbar-expand-lg  bg-light">
+                <div class="container-fluid justify-content-center">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <h3><a class="nav-link " href="{% url 'Title' %}" style="color: black">Title</a></h3>
+                        </li>
+                        <li class="nav-item">
+                            <h3><a class="nav-link active" href="{% url 'Group' %}" style="color: black">Group</a></h3>
+                        </li>
+                        <li class="nav-item">
+                            <h3><a class="nav-link" href="{% url 'Adviser' %}" style="color: black">Adviser</a></h3>
+                        </li>
+                        <li class="nav-item">
+                            <h3><a class="nav-link" href="{% url 'Panelist' %}" style="color: black">Panelists</a></h3>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2 class="h2">
+                Groups
+            </h2>
+        </div>
+
+        {% for grp in group %}
+        <div class="container-fluid">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    <h5>{{ grp.groupname }}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ grp.name1 }}</li>
+                    <li class="list-group-item">{{ grp.name2}}</li>
+                    <li class="list-group-item">{{ grp.name3}}</li>
+                    <li class="list-group-item">{{ grp.name4}}</li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+
+
+
+    </main>
+
+
+
+
+
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'cp/main/base.html' %}
+{% load static %}
+
+{% block title %}
+    Forum Topics
+{% endblock %}
+
+
+
+{% block content %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">
+                Forum Topics
+            </h1>
+        </div>
+
+
+        {#    POSTSSSS#}
+        {##}
+        <div class="container-fluid">
+
+
+            {% for topic in topics %}
+                <a href="/forum/{{ topic.id }}" style="text-decoration: none; color: #3b3b3b">
+                <div class="card">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ topic.title}}</h5>
+
+                        <p class="card-text">{{ topic.description }}</p>
+                    </div>
+
+
+                </div>
+                </a>
+
+                <br>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

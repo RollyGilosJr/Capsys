@@ -1,0 +1,35 @@
+{% extends 'dean/main/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Students
+{% endblock %}
+
+
+{% block content %}
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">
+                Groups
+            </h1>
+            {#CONTENT BLOCK#}
+        </div>
+        {% for grp in group %}
+        <div class="container-fluid">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    <h5>{{ grp.groupname }}</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ grp.name1 }}</li>
+                    <li class="list-group-item">{{ grp.name2}}</li>
+                    <li class="list-group-item">{{ grp.name3}}</li>
+                    <li class="list-group-item">{{ grp.name4}}</li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+
+
+    </main>
+{% endblock %}

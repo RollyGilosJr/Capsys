@@ -1,0 +1,41 @@
+{% extends 'cp/main/base.html' %}
+{% load static %}
+
+{% block title %}
+Subject
+{% endblock %}
+
+
+
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+  <div class="container-fluid">
+    {% block name %}<h1>subject list</h1> {% endblock %}
+    <hr>
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Subject Name</th>
+            <th scope="col">Course Passcode</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for subject in subjects %}
+          <tr>
+            <td>{{ subject.id }}</td>
+            <td>{{ subject.subject_name }}</td>
+            <td>{{ subject.code}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+
+{% endblock %}
